@@ -1,8 +1,15 @@
-# Documentation for a project
-This is a description of the project.
+# Documentation for "ses" and "sesd", a predecessor to ssh (openssh)
+This was created when people were starting to trap telnet and rlogin
+packats to get passwords for remote attacks.
+
+Ssh is a more complete solution which uses industrial grade
+encryption and has been tusted by millions of users the world round.
+It is a much much better solution than this.  This is here for
+reference only.  Although the server and client are built and
+installed, no attempt is made to configure the server.
 <hr>
 
-<table src="src/*.c src/*.h"><tr><th align=left><a href='#dt_8CcIaOQp3'>err.c</a></th><td>Error handling for ses/sesd</td></tr>
+<table src="src/*.c src/*.h src/*.1 src/*.8"><tr><th align=left><a href='#dt_8CcIaOQp3'>err.c</a></th><td>Error handling for ses/sesd</td></tr>
 <tr><th align=left><a href='#dt_8CcIaOQp4'>info.c</a></th><td>Software to show information about a pty or tty</td></tr>
 <tr><th align=left><a href='#dt_8CcIaOQp5'>io.c</a></th><td>Software to reading/writing between ses and sesd</td></tr>
 <tr><th align=left><a href='#dt_8CcIaOQp6'>misc.c</a></th><td>Miscellaneous routines for ses and sesd</td></tr>
@@ -61,5 +68,4 @@ Constants used throughtout ses and sesd</div>
 
 <hr>
 
-This is the tail end of the document.
-
+Again, do not use sesd for anything other than reference.

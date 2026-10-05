@@ -51,7 +51,9 @@
 #include <sys/stat.h>
 #if defined( NeXT ) || defined( __bsdi__ ) || defined( linux )
 #include <sys/termios.h>
+#ifndef termio
 #define termio termios
+#endif
 #define TCGETA	TIOCGETA
 #define TCSETA	TIOCSETA
 #else
@@ -505,7 +507,7 @@ int setup_pty(char *e0,char *e1,char *e2,char *e3,char *e4,char *e5)
     small_env();
 #endif
 
-    execlp( e0, e1, e2, e3, e4, e5 );
+    execlp( e0, e1, e2, e3, e4, e5, NULL );
     system( e0 );
     fatal(F,"Cannot run %s:  %e\n",e0);
     }

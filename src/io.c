@@ -375,10 +375,20 @@ int xfer( int towatch, ... )
 
     if( debugging )
 	{
-	fprintf(stderr,"towatch=%d maxchan=%d mask=%o\n",towatch,maxchan,mask);
+#ifdef CAN_PRINT_MASK
+	fprintf(stderr,"towatch=%d maxchan=%d mask=%o\n",towatch,maxchan,
+	    (unsigned int)mask);
+#else
+	fprintf(stderr,"towatch=%d maxchan=%d\n",towatch,maxchan);
+#endif
 	for( xp=xps; xp<&xps[towatch]; xp++ )
+#ifdef NOTDEFCAN_PRINT_MASK
 	    fprintf(stderr,"xp:  %d->%d %o %d\n",
-		xp->x_from,xp->x_to,xp->x_mask,xp->x_stop);
+		xp->x_from,xp->x_to,(unsigned int)(xp->x_mask),xp->x_stop);
+#else
+	    fprintf(stderr,"xp:  %d->%d %d\n",
+		xp->x_from,xp->x_to,xp->x_stop);
+#endif
 	}
 
     while( 1 )

@@ -51,13 +51,13 @@
 #include <sys/stat.h>
 #if defined( NeXT ) || defined( __bsdi__ ) || defined( linux )
 #include <sys/termios.h>
-#ifndef termio
-#define termio termios
-#endif
+/* #ifndef termio */
+typedef struct termios termio_struct;
 #define TCGETA	TIOCGETA
 #define TCSETA	TIOCSETA
 #else
 #include <sys/termio.h>
+typedef struct termio termio_struct;
 #endif
 #include <sys/file.h>
 #include <sys/ioctl.h>
@@ -106,13 +106,13 @@ const char *WTMPS[] = { "/var/adm/wtmp", "/var/log/wtmp", NULL };
 int tty_settings( int func, int nl, int nc )
 /**************************************************************************/
     {
-    static struct termio tty_b;
+    static termio_struct tty_b;
 #ifdef TIOCGWINSZ
     static struct winsize tty_win;
 #else
     char *env;
 #endif
-    struct termio sbuf;
+    termio_struct sbuf;
 
 #ifdef DEBUG
     printf("sttysettings=%d tty_settings(%d,%d,%d).\r\n",sttysettings,func,nl,nc);	fflush(stdout);
@@ -134,7 +134,7 @@ int tty_settings( int func, int nl, int nc )
 #endif
 	    return 0;
 	case TTY_SETUP:
-	    memset( &tty_b, 0, sizeof( struct termio ) );
+	    memset( &tty_b, 0, sizeof( termio_struct ) );
 #ifdef TIOCGWINSZ
 	    memset( &tty_win, 0, sizeof(tty_win) );
 	    tty_win.ws_row = 24;

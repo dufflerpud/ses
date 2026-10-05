@@ -78,30 +78,37 @@ install:	$(TARGETS)
 
 $(OBJDIR)/sesd.o: \
 		$(SRCDIR)/sesd.c $(SRCDIR)/ses.h $(SRCDIR)/optional.h
+		@$(MKDIR) -p $(OBJDIR)
 		$(CC) $(CFLAGS) $(SYS5) -c $< -o $@
 
 $(OBJDIR)/ses.o: \
 		$(SRCDIR)/ses.c $(SRCDIR)/ses.h $(SRCDIR)/optional.h
+		@$(MKDIR) -p $(OBJDIR)
 		$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR)/unixpty.o: \
 		$(SRCDIR)/unixpty.c $(SRCDIR)/ses.h
+		@$(MKDIR) -p $(OBJDIR)
 		$(CC) $(CFLAGS) $(STREAMSPTY) $(UTMP) $(WTMP) -c $< -o $@
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c
+		@$(MKDIR) -p $(OBJDIR)
 		$(CC) $(CFLAGS) -c $< -o $@
 
 $(BINDIR)/sesd:	$(OBJDIR)/sesd.o $(OBJDIR)/unixpty.o $(OBJDIR)/io.o \
 		$(OBJDIR)/err.o $(OBJDIR)/misc.o
+		@$(MKDIR) -p $(BINDIR)
 		$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
 		rm -f core
 
 $(BINDIR)/ses:	$(OBJDIR)/ses.o $(OBJDIR)/unixpty.o $(OBJDIR)/io.o \
 		$(OBJDIR)/err.o $(OBJDIR)/misc.o
+		@$(MKDIR) -p $(BINDIR)
 		$(CC) $(LDFLAGS) $^ $(LIBS) -o $@
 		rm -f core
 
 $(BINDIR)/%:	$(SRCDIR)/%.c
+		@$(MKDIR) -p $(BINDIR)
 		$(CC) $(CFLAGS) $^ -o $@
 
 clean:

@@ -1,0 +1,55 @@
+.\-@HDR@-	@(#)ses.1	1.2 3/22/95
+.\-@HDR@-	
+.\-@HDR@-			Copyright 1994 by
+.\-@HDR@-			Net Daemons Associates, Inc.
+.\-@HDR@-			Woburn, MA 01801
+.\-@HDR@-			All Rights Reserved
+.\-@HDR@-	
+.\-@HDR@-	This software comprises unpublished confidential information
+.\-@HDR@-	of Net Daemons Associates and may not be used, copied or made
+.\-@HDR@-	available to anyone, except in accordance with the license
+.\-@HDR@-	under which it is furnished.
+.TH SES 1 "94/10/01"
+.ta 2i 4i 6i 8i
+.SH NAME
+ses \- Session handler
+.SH SYNOPSIS
+ses <arguments>
+.LP
+Where <arguments> is any of:
+.nf
+    -p <socketfile>        Name socket to talk to ses with
+    -d                     Enter daemon mode, listening to and responding
+                           to sockets on named socket_file
+    <hostname>             Create session on remote host
+    <specialfile>,<stty>   Open <specialfile> with settings specified
+                           in stty (e.g. "/dev/cuab,cs8,19200")
+    -l <logfile>           Copy output to logfile
+    -a <logfile>           Append output to logfile
+    -s <command>           Send specified command
+    -e <secs> <expect>     Wait for specified seconds or specified string
+    -i <escapechar>        Enter interactive mode (end with escape char)
+.fi
+.SH DESCRIPTION
+Ses allocates and controls a pseudo-terminal.  It replaces the functionality
+of script(1), telnet(1), and rsh(1).  It can also be used to create generic
+chat scripts.
+.P
+Its primary advantage over its more traditional counterparts come in
+its ability to combine functionality from its different functions and
+enhanced network security (encryption) when talking to remote systems.
+.SH EXAMPLES
+.nf
+To act like script:
+    ses -l typescript -i
+To act like telnet:
+    ses another_host -i
+To act like rsh:
+    ses another_host -e some_command
+To setup a chat script
+    ses -d /tmp/mysession
+    ses -u /tmp/mysession -s "telnet nda" -e login: -s 
+    
+.fi
+.SH FILES
+/usr/local/etc/ses.cfg

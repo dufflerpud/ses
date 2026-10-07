@@ -54,7 +54,7 @@ TARGETS=$(ABINS) $(ASCRIPTS)
 all:		$(ABINS)
 		rm -f /tmp/sesdebug*
 
-install:	$(TARGETS)
+old_install:	$(TARGETS)
 		[ -d $(EXEBIN) ] || mkdir -p $(EXEBIN)
 		chmod 755 $(EXEBIN)
 		cd $(EXEBIN) ; rm -f $(LBINS)

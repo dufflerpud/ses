@@ -1,0 +1,26 @@
+.\-@HDR@-	@(#)sesd.8	1.1 11/16/94
+.\-@HDR@-	
+.\-@HDR@-			Copyright 1994 by
+.\-@HDR@-			Net Daemons Associates, Inc.
+.\-@HDR@-			Woburn, MA 01801
+.\-@HDR@-			All Rights Reserved
+.\-@HDR@-	
+.\-@HDR@-	This software comprises unpublished confidential information
+.\-@HDR@-	of Net Daemons Associates and may not be used, copied or made
+.\-@HDR@-	available to anyone, except in accordance with the license
+.\-@HDR@-	under which it is furnished.
+.TH SESD 8 "94/10/01"
+.ta 2i 4i 6i 8i
+.SH NAME
+sesd \- Daemon for ses, the session handler
+.SH SYNOPSIS
+sesd [ -D ]
+.SH DESCRIPTION
+sesd can be invoked from /etc/inetd.conf similar to the way that
+telnetd is invoked, or on the command line.  If invoked with -D,
+sesd will attempt to log some information in /tmp/sesdebug.nnnn
+where "nnnn" is the pid of the process logging.
+.SH SEE ALSO
+ses(1)
+.br
+inetd.conf(5)
